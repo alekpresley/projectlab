@@ -1,5 +1,5 @@
-#ifndef PARK_H
-#define PARK_H
+#ifndef VIDEO_H
+#define VIDEO_H
 
 #include <iostream>
 using namespace std;
