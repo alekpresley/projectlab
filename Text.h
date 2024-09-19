@@ -4,12 +4,12 @@
     Date: 9/15/24
     Purpose: header file for a Text class, which is my own version of the C++ String Class
 */
-
-#include <iostream>
-using namespace std;
-
 #ifndef TEXT_H
 #define TEXT_H
+#include <iostream>
+#include <cstring>
+using namespace std;
+
 class Text
 {
 private:

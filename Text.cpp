@@ -4,10 +4,7 @@
     Date: 9/17/24
     Purpose: source file conaining function definitions required for the Text class
 */
-#include <iostream>
-#include <cstring>
 #include "Text.h"
-using namespace std;
 
 //Text object constructor. Creates a pointer to an array of characters from the passed in c-string
 Text::Text(char* input){
