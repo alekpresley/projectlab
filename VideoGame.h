@@ -1,5 +1,5 @@
-#ifndef VIDEO_H
-#define VIDEO_H
+#ifndef VIDEOGAME_H
+#define VIDEOGAME_H
 
 #include <iostream>
 using namespace std;
