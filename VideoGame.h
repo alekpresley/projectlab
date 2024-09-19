@@ -18,6 +18,7 @@ class VideoGame{
     string getPublisher(Text*);
     int getYear(int);
     int getRating(int);
+    
 
 
 };
