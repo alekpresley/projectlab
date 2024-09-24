@@ -13,12 +13,18 @@ class VideoGame{
     public:
     VideoGame(Text*,Text*, Text*, int, int);
     ~VideoGame();
-    string getName(Text*);
-    string getAuthor(Text*);
-    string getPublisher(Text*);
-    int getYear(int);
-    int getRating(int);
-    
+    //getters
+    Text* getVideoGameName();
+    Text* getVideoGameAuthor();
+    Text* getVideoGamePublisher();
+    int getVideoGameYear();
+    int getVideoGameRating();
+    //setters
+    void setVideoGameName(Text*);
+    void setVideoGameAuthor(Text*);
+    void setVideoGamePublisher(Text*);
+    void setVideoGameYear(int);
+    void setVideoGameRating(int);
 
 
 };

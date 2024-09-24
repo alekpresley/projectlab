@@ -1,7 +1,3 @@
-/*
-
-*/
-
 #include <iostream>
 #include <fstream>
 #include "Text.h"
@@ -21,9 +17,9 @@ class VideoGameLibrary{
         void removeVideoGameFromArray();
         void saveToFile(char*);
         void displayVideoGamePublishers();
-        void sortVideoGameAlphabetically();
+        void changeVideoGameDetails();
         void sortVideoGameGenre();
-        VideoGameLibrary(int);
+        VideoGameLibrary(int Max_Game);
         ~VideoGameLibrary();
 };
 #endif
