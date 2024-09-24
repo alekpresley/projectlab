@@ -7,6 +7,10 @@ using namespace std;
 #ifndef VIDEOGAMELIBRARY_H
 #define VIDEOGAMELIBRARY_H
 class VideoGameLibrary{
+    private:
+    VideoGame** videoGamesArray;
+    int maxGame;
+    int numGame;
     public:
         //public function prototypes
         void resizeVideoGameArray();
@@ -19,7 +23,7 @@ class VideoGameLibrary{
         void displayVideoGamePublishers();
         void changeVideoGameDetails();
         void sortVideoGameGenre();
-        VideoGameLibrary(int Max_Game);
+        VideoGameLibrary(int maxGame);
         ~VideoGameLibrary();
 };
 #endif
