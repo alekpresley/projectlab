@@ -19,5 +19,9 @@ VideoGameLibrary::VideoGameLibrary (int maxGame) {
 
 // Destructor
 VideoGameLibrary::~VideoGameLibrary() {
-    for (int i = )
+    for (int i = 0; i < numGame; ++i) {
+        delete videoGamesArray[i];
+    }
+    delete[] videogameArray;
+    cout << "VideoGameLi"
 }

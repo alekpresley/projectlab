@@ -4,6 +4,13 @@
 #include "VideoGame.h"
 using namespace std;
 
+/*
+    File Name: VideoGameLibrary.H
+    Authors: Tobin McGee, Alek Presley, Sujal Gohil, Tristen Martin
+    Date:9/24/24
+    Purpose: Header File for Videogamelibrary.cpp
+*/
+
 #ifndef VIDEOGAMELIBRARY_H
 #define VIDEOGAMELIBRARY_H
 class VideoGameLibrary{

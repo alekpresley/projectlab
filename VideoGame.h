@@ -1,6 +1,11 @@
 #ifndef VIDEOGAME_H
 #define VIDEOGAME_H
-
+/*
+    File Name: VideoGame.H
+    Authors: Tobin McGee, Alek Presley, Sujal Gohil, Tristen Martin
+    Date:9/24/24
+    Purpose: Header File for Videogame.cpp
+*/
 #include "Text.h"
 class VideoGame{
     private:

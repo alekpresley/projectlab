@@ -1,6 +1,6 @@
 /*
     File name: Text.cpp
-    Author: Tobin B. McGee
+    Author: Tobin McGee, Alek Presley, Sujal Gohil, Tristen Martin
     Date: 9/17/24
     Purpose: source file conaining function definitions required for the Text class
 */

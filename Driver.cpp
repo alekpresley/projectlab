@@ -1,6 +1,9 @@
 #include "VIDEOGAME.H"
 /*
-Driver file
+    File name: Driver.cpp
+    Author: Tobin McGee, Alek Presley, Sujal Gohil, Tristen Martin
+    Date: 9/17/24
+    Purpose: Main 
 */
 int main(){
     int choice;

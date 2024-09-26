@@ -1,6 +1,6 @@
 /*
     File name: Text.h
-    Author: Tobin B. McGee
+    Author: Tobin McGee, Alek Presley, Sujal Gohil, Tristen Martin
     Date: 9/15/24
     Purpose: header file for a Text class, which is my own version of the C++ String Class
 */
