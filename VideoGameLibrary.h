@@ -18,11 +18,12 @@ class VideoGameLibrary{
     VideoGame** videoGamesArray;
     int maxGame;
     int numGame;
+
     public:
         //public function prototypes
         void resizeVideoGameArray();
         void addVideoGamesToArray();
-        void displayVideoGames();
+        void displayVideoGames(int numGame, VideoGameLibrary videoGamesArray[]);
         void displayVideoGameTitles();
         void loadVideoGamesFromFile(char*);
         void removeVideoGameFromArray();
