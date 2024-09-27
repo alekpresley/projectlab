@@ -53,7 +53,7 @@ void VideoGameLibrary::displayVideoGameTitles(){
 void VideoGameLibrary::saveToFile(char* fileName){
     ofstream outfile; //outputs to the file
     outfile.open(fileName);
-	for(int i = 0; i < numGame; ++i){ //loop goes through all games
+	for(int i = 0; i < numGame; i++){ //loop goes through all games
         outfile << videoGamesArray[i]->getVideoGameName() << endl; 
         outfile << videoGamesArray[i]->getVideoGameAuthor() << endl; 
         outfile << videoGamesArray[i]->getVideoGamePublisher() << endl; 
@@ -88,7 +88,7 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
     attempts a getline from the file, trying to assign it to the temp c-string.
     Failure of the getline skips the while loop, terminating the function with no other output and returns the user to the menu 
     */
-    while(infile.getline(temp,10000));
+    while(infile.getline(temp,10000))
     {
         //check to see if the game library is full, if so, call the resizeVideoGameArray function to double the array's size
         if(numGame == maxGame){
@@ -117,5 +117,61 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
     }
     cout << "\n" << gamesAdded << " video games were read from the file and added to your VideoGame library.\n";
     infile.close(); //close the ifstream to the file before exiting the function
+    return;
+};
+
+//function definition of resizeVideoGameArray(). Is designed to double the size of the videoGameArray if there is an attempt to add a game to a full library
+void VideoGameLibrary::resizeVideoGameArray(){
+    cout << "\nResizing array from " << maxGame << " to " << maxGame *2;
+    //creates a new array of size being double the original array
+    VideoGame** tempArray; 
+    maxGame = maxGame * 2;
+    tempArray = new VideoGame* [maxGame];
+
+    //copy all entries from the current libray to the new array
+    for(int i = 0; i < maxGame; i++){
+        tempArray[i] = videoGamesArray[i];
+    };
+    //destroys the old array and redefines it
+    delete [] videoGamesArray;
+    videoGamesArray = tempArray;
+    return;
+};
+//function definition that is meant to allow the user to manually add a new game to the current library
+void VideoGameLibrary::addVideoGamesToArray(){
+
+    //creates variables needed to temporarily hold the information needed to call the VideoGame constructor
+    char temp[100];
+    Text* tempTitle;
+    Text* tempDeveloper;
+    Text* tempPublisher;
+    int tempYear;
+    int tempRating;
+
+    //input logic
+    cout << "\nVideo Game TITLE: ";
+    cin.ignore(); // clears cin to avoid issues with cin.getline
+    cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+    tempTitle = new Text(temp); //dynamically create a temporary text object to be sent to the VideoGame constructor
+    cout << "\nVideo Game DEVELOPER: ";
+    cin.getline(temp, 100);
+    tempDeveloper = new Text(temp);
+    cout << "\nVideo Game PUBLISHER: ";
+    cin.getline(temp, 100);
+    tempPublisher = new Text(temp);
+    cout << "\nVideo Game YEAR: ";
+    cin >> tempYear;
+    cout << "\nVideo Game IGN rating: ";
+    cin >> tempRating;
+    cin.ignore(); // clears cin to avoid possble later conflicts
+
+    //check if the library is full already, and resize of it is to accomodate for the new game entry
+    if(numGame == maxGame){
+        resizeVideoGameArray();
+    }
+    //call the VideoGame constructor using the temporary variables to create a new VideoGame object at position equal to numGames
+    // which will place the game in the next open position of the videoGamesArray
+    videoGamesArray[numGame] = new VideoGame(tempTitle, tempDeveloper, tempPublisher, tempYear, tempRating);
+    numGame++;
     return;
 };
