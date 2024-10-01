@@ -7,12 +7,14 @@
 #include "VideoGame.h"
 
 //Constructor
-VideoGame::VideoGame(Text* name, Text* author, Text* publisher,int year,int rating){
-    name = name;
-    author = author;
-    publisher = publisher;
-    year = year;
-    rating = rating;
+VideoGame::VideoGame(Text* inName, Text* inAuthor, Text* inPublisher,int inYear,int inRating){
+    name = inName;
+    author = inAuthor;
+    publisher = inPublisher;
+    year = inYear;
+    rating = inRating;
+
+    
 };
 //Destructor
 VideoGame::~VideoGame(){
@@ -49,7 +51,6 @@ int VideoGame::getVideoGameRating(){
 //setter for name
 void VideoGame::setVideoGameName(Text* newname){
     name = newname;
-
 };
 //setter for author
 void VideoGame::setVideoGameAuthor(Text* newauthor){

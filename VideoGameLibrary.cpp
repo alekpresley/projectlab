@@ -137,6 +137,57 @@ void VideoGameLibrary::resizeVideoGameArray(){
     videoGamesArray = tempArray;
     return;
 };
+
+//void VideoGameLibrary::changeVideoGameDetails(int select){
+   // int selection = select;
+    //switch(selection){
+    //    case 1:
+
+   // }
+//};
+
+//function definition to remove a particular game from the videoGamesArray
+void VideoGameLibrary::removeVideoGameFromArray(){
+    //variable declaration
+    int selection;
+    Text* tempTitle;
+    int newSel;
+    int num;
+    //check if there is one game or 0. Will not let the user delete a game if this is true. Will let the user delete a game if it is false
+    if(numGame <= 1){
+        cout << "\nThere must always be at least one game in the library to use this function.\n";
+    }
+    else{
+        //Ask the user what game they want to remove after listing the game titles
+        cout << "\nChoose from the following video games to remove:\n";
+        displayVideoGameTitles(); //calls this function that will do as described
+        cout << "\nChoose a video game between 1 & " << numGame << ": ";
+        cin >> selection;
+        //logic to see if the user chose a valid game to delete
+        while(selection < 1 || selection > numGame){
+            cout << "\nOops! You need to enter a valid selection: ";
+            cin >> selection;
+        }
+        //define the temporary variables
+        newSel = selection - 1;
+        num = numGame - 1;
+        tempTitle = videoGamesArray[newSel]->getVideoGameName();
+        //Tell the user the game has been deleted, and call the destructors for the correct game
+        cout << "\n\nThe video game \"";
+        tempTitle->displayText();
+        cout << "\" has been deleted.\n";
+        delete videoGamesArray[newSel];
+        //fix the array by moving the index of all the remaining games that are behind the deleted game
+        for( int i = newSel; i < num; i++){
+            videoGamesArray[i] = videoGamesArray[i+1];
+        }
+        //remove the invalid array position and decrements numGames
+        videoGamesArray[num] = NULL;
+        numGame--;
+    }
+    return;
+};
+
 //function definition that is meant to allow the user to manually add a new game to the current library
 void VideoGameLibrary::addVideoGamesToArray(){
 

@@ -29,7 +29,7 @@ class VideoGameLibrary{
         void removeVideoGameFromArray();
         void saveToFile(char*);
         void displayVideoGamePublishers();
-        void changeVideoGameDetails();
+        void changeVideoGameDetails(int selection);
         void sortVideoGameGenre();
         VideoGameLibrary(int maxGame);
         ~VideoGameLibrary();
