@@ -32,8 +32,7 @@ void VideoGameLibrary::displayVideoGames(){
     }
     else{
         for(int i =0; i < numGame; i++){
-            tmp = videoGamesArray[i]->getVideoGameName();
-            cout << tmp;
+            cout << videoGamesArray[i]->getVideoGameName() << endl;
             cout << videoGamesArray[i]->getVideoGameAuthor() << endl;
             cout << videoGamesArray[i]->getVideoGamePublisher() << endl;
             cout << videoGamesArray[i]->getVideoGameYear() << endl;

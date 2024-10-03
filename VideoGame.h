@@ -8,13 +8,14 @@
 */
 #include "Text.h"
 class VideoGame{
+    //Private
     private:
     Text* name;
     Text* author;
     Text* publisher;
     int year;
     int rating;
-
+    //Public
     public:
     VideoGame(Text*,Text*, Text*, int, int);
     ~VideoGame();

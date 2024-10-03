@@ -15,12 +15,13 @@ using namespace std;
 #define VIDEOGAMELIBRARY_H
 class VideoGameLibrary{
     private:
+        //Private
         VideoGame** videoGamesArray;
         int maxGame;
         int numGame;
 
     public:
-        //public function prototypes
+        //Public function prototypes
         void resizeVideoGameArray();
         void addVideoGamesToArray();
         void displayVideoGames();
