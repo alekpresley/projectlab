@@ -11,26 +11,34 @@ int main(){
     int libSize;
     VideoGameLibrary* library;
     char fileName[1000];
-    cout << "\nHow many games do you wish to play?\n";
+    cout << "\nHow many games do you wish for your virtual library to hold?\n";
     cin >> libSize;
     library = new VideoGameLibrary(libSize);
+
+    cout << " _ _ _     _                     " << endl;
+    cout << "| | | |___| |___ ___ _____ ___   " << endl;
+    cout << "| | | | -_| |  _| . |     | -_|  " << endl;
+    cout << "|_____|___|_|___|___|_|_|_|___|  " << endl;
+    cout << "                                 " << endl;
+
     do{
-        cout << " _ _ _     _                     " << endl;
-        cout << "| | | |___| |___ ___ _____ ___   " << endl;
-        cout << "| | | | -_| |  _| . |     | -_|  " << endl;
-        cout << "|_____|___|_|___|___|_|_|_|___|  " << endl;
-        cout << "                                 " << endl;
-        cout << "WELCOME TO THE VIDEOGAME LIBRARY!" << endl << endl;
-        cout << "Please pick an option" << endl;
-        cout << "1. Adds Games" << endl;
-        cout << "2. Removing Games" << endl;
-        cout << "3. Display Title Only" << endl;
-        cout << "4. Displays" << endl;
-        cout << "5. Save" << endl;
-        cout << "6. Load" << endl;
-        cout << "7. Sort by year " << endl;
-        cout << "8. Close Program" << endl;
+        cout << "\nWELCOME TO THE VIDEOGAME LIBRARY!" << endl << endl;
+        cout << "Please pick an option 1 to 10" << endl;
+        cout << "1. Adds Game To Virtual Library" << endl;
+        cout << "2. Removing Games From Virtual Library" << endl;
+        cout << "3. Change Video Game Details" << endl;
+        cout << "4. Display Video Game Titles" << endl;
+        cout << "5. Display All Video Game Details" << endl;
+        cout << "6. Save Virtual Library To File" << endl;
+        cout << "7. Load Video Games From File to Virtual Library" << endl;
+        cout << "8. Sort Video Games By Year " << endl;
+        cout << "9. Sort Video Games By Rating " << endl;
+        cout << "10. Delete Virtual Library And Close Program" << endl;
         cin >> choice;
+        while(choice < 1 || choice > 10){
+        cout << "\nINVALID ENTRY. Please choose again: ";
+        cin >> choice;
+        };
         //cout << endl << endl;
         switch (choice) {
             case 1:
@@ -43,35 +51,41 @@ int main(){
                 break;
             case 3:
                 cout << "\nYou pick 3. " << endl;
-                library-> displayVideoGameTitles();
                 break;
             case 4:
                 cout << "\nYou pick 4. " << endl;
-                library-> displayVideoGames();
+                library-> displayVideoGameTitles();
                 break;
             case 5:
                 cout << "\nYou pick 5. " << endl;
-                cout << "Enter a file name to save the game: ";
-                cin >> fileName;
-                library-> saveToFile(fileName);
+                library-> displayVideoGames();
                 break;
             case 6:
                 cout << "\nYou pick 6. " << endl;
                 cout << "Enter a file name to save the game: ";
                 cin >> fileName;
-                library-> loadVideoGamesFromFile(fileName);
+                library-> saveToFile(fileName);
                 break;
             case 7:
                 cout << "\nYou pick 7. " << endl;
-                //sorting
+                cout << "Enter a file name to save the game: ";
+                cin >> fileName;
+                library-> loadVideoGamesFromFile(fileName);
+                break;
             case 8:
+                cout << "\nYou pick 8. " << endl;
+                break;
+            case 9:
+                cout << "\nYou pick 9. " << endl;
+                break;
+            case 10:
                 cout << "Goodbye\n";
                 break;
 
         }
-    }while(choice!=8);
+    }while(choice!=10);
+
+    delete library;
     
-	
-	
     return 0;
 }

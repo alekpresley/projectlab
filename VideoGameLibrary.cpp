@@ -32,9 +32,12 @@ void VideoGameLibrary::displayVideoGames(){
     }
     else{
         for(int i =0; i < numGame; i++){
-            cout << videoGamesArray[i]->getVideoGameName() << endl;
-            cout << videoGamesArray[i]->getVideoGameAuthor() << endl;
-            cout << videoGamesArray[i]->getVideoGamePublisher() << endl;
+            videoGamesArray[i]->getVideoGameName()->displayText();
+            cout << endl;
+            videoGamesArray[i]->getVideoGameAuthor()->displayText();
+            cout << endl;
+            videoGamesArray[i]->getVideoGamePublisher()->displayText();
+            cout << endl;
             cout << videoGamesArray[i]->getVideoGameYear() << endl;
             cout << videoGamesArray[i]->getVideoGameRating() << endl;   
         }
@@ -46,7 +49,9 @@ void VideoGameLibrary::displayVideoGameTitles(){
     }
     else{
         for(int i =0; i < numGame; i++){
-            cout << videoGamesArray[i]->getVideoGameName();
+            cout << "Game " << i+1 << ". ";
+            cout << videoGamesArray[i]->getVideoGameName()->getText();
+            cout << endl;
 
         }
     }
@@ -55,9 +60,9 @@ void VideoGameLibrary::saveToFile(char* fileName){
     ofstream outfile; //outputs to the file
     outfile.open(fileName);
 	for(int i = 0; i < numGame; i++){ //loop goes through all games
-        outfile << videoGamesArray[i]->getVideoGameName() << endl; 
-        outfile << videoGamesArray[i]->getVideoGameAuthor() << endl; 
-        outfile << videoGamesArray[i]->getVideoGamePublisher() << endl; 
+        outfile << videoGamesArray[i]->getVideoGameName()->getText() << endl; 
+        outfile << videoGamesArray[i]->getVideoGameAuthor()-> getText() << endl; 
+        outfile << videoGamesArray[i]->getVideoGamePublisher()-> getText() << endl; 
         outfile << videoGamesArray[i]->getVideoGameYear() << endl;
         outfile << videoGamesArray[i]->getVideoGameRating() << endl;
     }
