@@ -26,12 +26,14 @@ VideoGameLibrary::~VideoGameLibrary() {
 };
 
 void VideoGameLibrary::displayVideoGames(){
+    Text* tmp;
     if(numGame == 0){ 
             cout << "\nThere are no games in your Library!\n ";
     }
     else{
         for(int i =0; i < numGame; i++){
-            cout << videoGamesArray[i]->getVideoGameName() << endl;
+            tmp = videoGamesArray[i]->getVideoGameName();
+            cout << tmp;
             cout << videoGamesArray[i]->getVideoGameAuthor() << endl;
             cout << videoGamesArray[i]->getVideoGamePublisher() << endl;
             cout << videoGamesArray[i]->getVideoGameYear() << endl;

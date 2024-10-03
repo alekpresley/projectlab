@@ -26,26 +26,26 @@ int main(){
         //cout << endl << endl;
         switch (choice) {
             case 1:
-                cout << "You pick 1." << endl;
+                cout << "\nYou pick 1." << endl;
                 library->addVideoGamesToArray();
                 break;
             case 2:
-                cout << "You pick 2. " << endl;
+                cout << "\nYou pick 2. " << endl;
                 library->removeVideoGameFromArray();
                 break;
             case 3:
-                cout << "You pick 3. " << endl;
+                cout << "\nYou pick 3. " << endl;
                 library-> displayVideoGames();
                 break;
             case 4:
-                cout << "Your pick 4. " << endl;
-                cout << "Enter a file name to save the game ";
+                cout << "\nYou pick 4. " << endl;
+                cout << "Enter a file name to save the game: ";
                 cin >> fileName;
                 library-> saveToFile(fileName);
                 break;
             case 5:
-                cout << "Your pick 5. " << endl;
-                cout << "Enter a file name to save the game ";
+                cout << "\nYou pick 5. " << endl;
+                cout << "Enter a file name to save the game: ";
                 cin >> fileName;
                 library-> loadVideoGamesFromFile(fileName);
                 break;
