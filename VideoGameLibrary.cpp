@@ -31,7 +31,7 @@ void VideoGameLibrary::changeVideoGameDetails(){
     int newSel;
     int num;
     //check if there is one game or 0
-    if(numGame <= 1){
+    if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
     }
     else{
@@ -47,19 +47,82 @@ void VideoGameLibrary::changeVideoGameDetails(){
         }
         newSel = selection - 1;
 
-        //Display details of the game using getters and provide an indexed menu to select which detail to modify
-        //switch cases for each detail using the setters
-        // Ask if done or would like to continue?
+        
+        int choice;
+        Text* tempWord;
+        char temp[100];
+        int tempNum;
+        do{
+            cout << endl << "1. Title: " << videoGamesArray[newSel]->getVideoGameName()->getText() << endl;
+            cout << "2. Author: " << videoGamesArray[newSel]->getVideoGameAuthor()->getText() << endl;
+            cout << "3. Publisher: " << videoGamesArray[newSel]->getVideoGamePublisher()->getText() << endl;
+            cout << "4. Year: " << videoGamesArray[newSel]->getVideoGameYear() << endl;
+            cout << "5. Rating: " << videoGamesArray[newSel]->getVideoGameRating() << endl;
+            cout << "6. Exit" << endl;
+            cout << "What would you like to change the Name, Author, Publisher, Year, or Rating, Exit (Using Nums 1-6)" << endl;
+
+            cin >> choice;
+            while(choice < 1 || choice > 6){
+                cout << "\nINVALID ENTRY. Please choose again: " << endl;
+                cin >> choice;
+            };
+            switch(choice){  
+                    
+            case 1:
+                cout << "\nEnter new Game Name: ";
+                cin.ignore(); // clears cin to avoid issues with cin.getline
+                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+                tempWord = new Text(temp);
+                videoGamesArray[newSel]->setVideoGameName(tempWord);
+                break;
+            case 2:
+                cout << "\nEnter new Author Name: ";
+                cin.ignore(); // clears cin to avoid issues with cin.getline
+                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+                tempWord = new Text(temp);
+                videoGamesArray[newSel]->setVideoGameAuthor(tempWord);
+                break;
+            case 3:
+                cout << "\nEnter new Publisher Name: ";
+                cin.ignore(); // clears cin to avoid issues with cin.getline
+                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+                tempWord = new Text(temp);
+                videoGamesArray[newSel]->setVideoGamePublisher(tempWord);
+                break;
+            case 4:
+                cout << "\nEnter new Release Year: ";
+                cin.ignore(); // clears cin to avoid issues with cin.getline
+                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+                tempWord = new Text(temp);
+                videoGamesArray[newSel]->setVideoGameYear(tempNum);
+                break;
+            case 5:
+                cout << "\nEnter new IGN rating: (whole number 0-10)";
+                cin.ignore(); // clears cin to avoid issues with cin.getline
+                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
+                tempWord = new Text(temp);
+                videoGamesArray[newSel]->setVideoGameRating(tempNum);
+                break;
+            case 6:
+                cout << "\nExiting Change Details.\n";
+                break;
+        }
+
+
+
+
+        }while(choice!=6);
+
     }
     return;
 };
 
 void VideoGameLibrary::sortVideoGamesByRating(){
-    if(numGame <= 1){
+    if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
         return;
     }
-    cout << "startint to sort\n";
+    cout << "Starting to sort by Rating\n";
    	quickSortRating(videoGamesArray, 0, numGame-1);
     cout << "Finished sort.\n";
 
@@ -94,11 +157,11 @@ int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left,
   return temp;
 };
 void VideoGameLibrary::sortVideoGamesByYear(){
-    if(numGame <= 1){
+    if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
         return;
     }
-   cout << "Starting to sort.\n";
+   cout << "Starting to sort by Year.\n";
    	quickSortYear(videoGamesArray, 0, numGame-1);
     cout << "Finished sort.\n";
 };
@@ -251,23 +314,15 @@ void VideoGameLibrary::resizeVideoGameArray(){
     return;
 };
 
-//void VideoGameLibrary::changeVideoGameDetails(int select){
-   // int selection = select;
-    //switch(selection){
-    //    case 1:
-
-   // }
-//};
-
 //function definition to remove a particular game from the videoGamesArray
 void VideoGameLibrary::removeVideoGameFromArray(){
-    //variable declaration
+    //variable declarations
     int selection;
     Text* tempTitle;
     int newSel;
     int num;
     //check if there is one game or 0. Will not let the user delete a game if this is true. Will let the user delete a game if it is false
-    if(numGame <= 1){
+    if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
     }
     else{
