@@ -30,8 +30,13 @@ class VideoGameLibrary{
         void removeVideoGameFromArray();
         void saveToFile(char*);
         void displayVideoGamePublishers();
-        void changeVideoGameDetails(int selection);
-        void sortVideoGameGenre();
+        void changeVideoGameDetails();
+        void sortVideoGamesByRating();
+        void sortVideoGamesByYear();
+        void quickSortYear(VideoGame**, int, int);
+        int partitionYear(VideoGame**, int, int);
+        void quickSortRating(VideoGame**, int, int);
+        int partitionRating(VideoGame**, int, int);
         VideoGameLibrary(int maxGame);
         ~VideoGameLibrary();
 };

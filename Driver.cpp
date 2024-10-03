@@ -51,32 +51,35 @@ int main(){
                 break;
             case 3:
                 cout << "\nYou pick 3. " << endl;
+                library->changeVideoGameDetails();
                 break;
             case 4:
                 cout << "\nYou pick 4. " << endl;
-                library-> displayVideoGameTitles();
+                library->displayVideoGameTitles();
                 break;
             case 5:
                 cout << "\nYou pick 5. " << endl;
-                library-> displayVideoGames();
+                library->displayVideoGames();
                 break;
             case 6:
                 cout << "\nYou pick 6. " << endl;
                 cout << "Enter a file name to save the game: ";
                 cin >> fileName;
-                library-> saveToFile(fileName);
+                library->saveToFile(fileName);
                 break;
             case 7:
                 cout << "\nYou pick 7. " << endl;
                 cout << "Enter a file name to save the game: ";
                 cin >> fileName;
-                library-> loadVideoGamesFromFile(fileName);
+                library->loadVideoGamesFromFile(fileName);
                 break;
             case 8:
                 cout << "\nYou pick 8. " << endl;
+                library->sortVideoGamesByYear();
                 break;
             case 9:
                 cout << "\nYou pick 9. " << endl;
+                library->sortVideoGamesByRating();
                 break;
             case 10:
                 cout << "Goodbye\n";

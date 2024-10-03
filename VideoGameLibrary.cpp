@@ -24,6 +24,113 @@ VideoGameLibrary::~VideoGameLibrary() {
     cout << "VideoGameLibrary was deleted";
     
 };
+void VideoGameLibrary::changeVideoGameDetails(){
+    //variable declaration
+    int selection;
+    Text* tempTitle;
+    int newSel;
+    int num;
+    //check if there is one game or 0
+    if(numGame <= 1){
+        cout << "\nThere must always be at least one game in the library to use this function.\n";
+    }
+    else{
+        //Ask the user what game they want to remove after listing the game titles
+        cout << "\nChoose from the following video games to modify:\n";
+        displayVideoGameTitles(); //calls this function that will do as described
+        cout << "\nChoose a video game between 1 & " << numGame << ": ";
+        cin >> selection;
+        //logic to see if the user chose a valid game to modify
+        while(selection < 1 || selection > numGame){
+            cout << "\nOops! You need to enter a valid selection: ";
+            cin >> selection;
+        }
+        newSel = selection - 1;
+
+        //Display details of the game using getters and provide an indexed menu to select which detail to modify
+        //switch cases for each detail using the setters
+        // Ask if done or would like to continue?
+    }
+    return;
+};
+
+void VideoGameLibrary::sortVideoGamesByRating(){
+    if(numGame <= 1){
+        cout << "\nThere must always be at least one game in the library to use this function.\n";
+        return;
+    }
+    cout << "startint to sort\n";
+   	quickSortRating(videoGamesArray, 0, numGame-1);
+    cout << "Finished sort.\n";
+
+};
+void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, int high) {
+  if (low < high) {
+    int temp = partitionRating(videoGamesArray, low, high);
+    quickSortRating(videoGamesArray, low, temp-1); 
+    quickSortRating(videoGamesArray, temp+1, high);
+  }
+};
+int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left, int right) {
+  VideoGame* partition = sortVideoGamesArray[left]; 
+  int temp = left; 
+  VideoGame* tempArray;
+  
+  for (int i = left+1; i <= right; i++) { 
+    if ((sortVideoGamesArray[i]->getVideoGameRating() < partition->getVideoGameRating()) || ((sortVideoGamesArray[i]->getVideoGameRating() == partition->getVideoGameRating()) && (rand()%2 == 0)))  {
+      temp = temp +1;
+
+	//swaps sortVideoGamesArray[i] and sortvideoGamesArray[temp]
+	tempArray = sortVideoGamesArray[i];
+	sortVideoGamesArray[i] = sortVideoGamesArray[temp];
+	sortVideoGamesArray[temp] = tempArray;
+    }
+  }
+
+  //swaps sortVideoGamesArray[left] and sortVideoGamesArray[temp]
+  tempArray = sortVideoGamesArray[left];
+  sortVideoGamesArray[left] = sortVideoGamesArray[temp];
+  sortVideoGamesArray[temp] = tempArray;
+  return temp;
+};
+void VideoGameLibrary::sortVideoGamesByYear(){
+    if(numGame <= 1){
+        cout << "\nThere must always be at least one game in the library to use this function.\n";
+        return;
+    }
+   cout << "Starting to sort.\n";
+   	quickSortYear(videoGamesArray, 0, numGame-1);
+    cout << "Finished sort.\n";
+};
+void VideoGameLibrary::quickSortYear(VideoGame** inVideoGamesArray, int low, int high) {
+  if (low < high) {
+    int temp = partitionYear(videoGamesArray, low, high);
+    quickSortYear(videoGamesArray, low, temp-1); 
+    quickSortYear(videoGamesArray, temp+1, high);
+  }
+};
+int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, int right) {
+  VideoGame* partition = sortVideoGamesArray[left]; 
+  int temp = left; 
+  VideoGame* tempArray;
+  
+  for (int i = left+1; i <= right; ++i) { 
+    if ((sortVideoGamesArray[i]->getVideoGameYear() < partition->getVideoGameYear()) || ((sortVideoGamesArray[i]->getVideoGameYear() == partition->getVideoGameYear()) && (rand()%2 == 0)))  {
+      temp = temp +1;
+
+	//swaps sortVideoGamesArray[i] and sortvideoGamesArray[temp]
+	tempArray = sortVideoGamesArray[i];
+	sortVideoGamesArray[i] = sortVideoGamesArray[temp];
+	sortVideoGamesArray[temp] = tempArray;
+    }
+  }
+
+  //swaps sortVideoGamesArray[left] and sortVideoGamesArray[temp]
+  tempArray = sortVideoGamesArray[left];
+  sortVideoGamesArray[left] = sortVideoGamesArray[temp];
+  sortVideoGamesArray[temp] = tempArray;
+  return temp;
+};
 
 void VideoGameLibrary::displayVideoGames(){
     Text* tmp;
