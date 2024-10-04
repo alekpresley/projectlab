@@ -6,6 +6,7 @@
 4
 5
 6
+savegame
 8
 9
 1
@@ -15,10 +16,13 @@ Test Publisher
 2005
 3
 7
-three_games.text
+three_games.txt
 4
 8
 5
+3
+10
+0
 3
 1
 5
@@ -30,12 +34,22 @@ Final Author
 3
 Final Pub
 4
-2007
+2024
 6
 2
-4
+5
+0
+2
+2
 4
 9
+5
+1
+MyGame
+Me
+MyPublisher
+2020
+10
 5
 6
 savegame

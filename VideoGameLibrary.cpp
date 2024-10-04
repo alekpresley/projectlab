@@ -37,6 +37,7 @@ VideoGameLibrary::~VideoGameLibrary() {
     Purpose: Display game titles with display titles and use menu logic to select game.
         Then use a nested menu to change game attributes
 */
+
 void VideoGameLibrary::changeVideoGameDetails(){
     //variable declaration
     int selection;
@@ -50,14 +51,17 @@ void VideoGameLibrary::changeVideoGameDetails(){
         //Ask the user what game they want to remove after listing the game titles
         cout << "\nChoose from the following video games to modify:\n";
         displayVideoGameTitles(); //calls this function that will do as described
-        cout << "\nChoose a video game between 1 & " << numGame << ": ";
+        cout << "\nChoose a video game between 1 & " << numGame << " (or 0 to cancel the operation): ";
         cin >> selection;
         //logic to see if the user chose a valid game to modify
-        while(selection < 1 || selection > numGame){
+        while(selection < 0 || selection > numGame){
             cout << "\nOops! You need to enter a valid selection: ";
             cin >> selection;
         }
-        
+        //exits function if user decides to cancel
+        if(selection==0){
+            return;
+        }
         newSel = selection - 1;//newSel corrects the index of the choice to the games index in the array
 
         //Variable Declarations for nested menu
@@ -140,7 +144,7 @@ void VideoGameLibrary::sortVideoGamesByRating(){
     cout << "Starting to sort by Rating\n";
    	quickSortRating(videoGamesArray, 0, numGame-1);
     cout << "Finished sort.\n";
-
+    return;
 };
 /*
     Function Name: quickSortRating
@@ -153,6 +157,7 @@ void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, i
     quickSortRating(videoGamesArray, low, temp-1); 
     quickSortRating(videoGamesArray, temp+1, high);
   }
+  return;
 };
 /*
     Function Name: partitionRating
@@ -181,11 +186,11 @@ int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left,
   sortVideoGamesArray[temp] = tempArray;
   return temp;
 };
+
 /*
     Function Name: sortVideoGamesByYear
     Purpose: sorts each index within the videoGamesArray by the year it was released
 */
-
 void VideoGameLibrary::sortVideoGamesByYear(){
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
@@ -195,6 +200,7 @@ void VideoGameLibrary::sortVideoGamesByYear(){
    	quickSortYear(videoGamesArray, 0, numGame-1);
     cout << "Finished sort.\n";
 };
+
 /*
     Function Name: quickSortYear
     Purpose: sorts each index within the videoGamesArray by the year it was released
@@ -218,12 +224,12 @@ int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, i
   
   for (int i = left+1; i <= right; ++i) { 
     if ((sortVideoGamesArray[i]->getVideoGameYear() < partition->getVideoGameYear()) || ((sortVideoGamesArray[i]->getVideoGameYear() == partition->getVideoGameYear()) && (rand()%2 == 0)))  {
-      temp = temp +1;
+        temp = temp +1;
 
-	//swaps sortVideoGamesArray[i] and sortvideoGamesArray[temp]
-	tempArray = sortVideoGamesArray[i];
-	sortVideoGamesArray[i] = sortVideoGamesArray[temp];
-	sortVideoGamesArray[temp] = tempArray;
+	    //swaps sortVideoGamesArray[i] and sortvideoGamesArray[temp]
+	    tempArray = sortVideoGamesArray[i];
+	    sortVideoGamesArray[i] = sortVideoGamesArray[temp];
+	    sortVideoGamesArray[temp] = tempArray;
     }
   }
 
@@ -247,6 +253,7 @@ void VideoGameLibrary::displayVideoGames(){
     else{
         //display video game details by calling them in the index with the text object display function
         for(int i =0; i < numGame; i++){
+            cout << endl;
             videoGamesArray[i]->getVideoGameName()->displayText();
             cout << endl;
             videoGamesArray[i]->getVideoGameAuthor()->displayText();
@@ -254,9 +261,10 @@ void VideoGameLibrary::displayVideoGames(){
             videoGamesArray[i]->getVideoGamePublisher()->displayText();
             cout << endl;
             cout << videoGamesArray[i]->getVideoGameYear() << endl;
-            cout << videoGamesArray[i]->getVideoGameRating() << endl;   
+            cout << videoGamesArray[i]->getVideoGameRating() << "/10 IGN Rating"<< endl;   
         }
     } 
+    return;
 };
 
 /*
@@ -275,6 +283,7 @@ void VideoGameLibrary::displayVideoGameTitles(){
 
         }
     }
+    return;
 };
 
 /*
@@ -286,6 +295,7 @@ void VideoGameLibrary::displayVideoGameTitles(){
     ofstream outfile; //outputs to the file
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
+        return;
     }
     outfile.open(fileName);
 	for(int i = 0; i < numGame; i++){ //loop goes through all games
@@ -299,6 +309,7 @@ void VideoGameLibrary::displayVideoGameTitles(){
 	cout << "\nAll video games in your library have been printed to " << fileName << endl;
 	return;
 };
+
 //function definition meant to pull the data from the provided files
 /*
     Function Name: loadVideoGamesFromFile
@@ -360,7 +371,6 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
     return;
 };
 
-//function definition of resizeVideoGameArray(). Is designed to double the size of the videoGameArray if there is an attempt to add a game to a full library
 /*
     Function Name: resizeVideoGameArray
     Purpose: creates an array of size being double the original, then copys the old array inro the new array that was double finally destory the array that did not get copyed.
@@ -382,7 +392,6 @@ void VideoGameLibrary::resizeVideoGameArray(){
     return;
 };
 
-//function definition to remove a particular game from the videoGamesArray
 /*
     Function Name: removeVideoGameFromArray
     Purpose: displays all the video game titles and ask which one to remove then deletes the game then shifts the array then decrementing the numgames
@@ -401,12 +410,16 @@ void VideoGameLibrary::removeVideoGameFromArray(){
         //Ask the user what game they want to remove after listing the game titles
         cout << "\nChoose from the following video games to remove:\n";
         displayVideoGameTitles(); //calls this function that will do as described
-        cout << "\nChoose a video game between 1 & " << numGame << ": ";
+        cout << "\nChoose a video game between 1 & " << numGame << "(or 0 to cancel the operation): ";
         cin >> selection;
         //logic to see if the user chose a valid game to delete
-        while(selection < 1 || selection > numGame){
+        while(selection < 0 || selection > numGame){
             cout << "\nOops! You need to enter a valid selection: ";
             cin >> selection;
+        }
+        //Exits remove game function if user enters 0
+        if(selection == 0){
+            return;
         }
         //define the temporary variables
         newSel = selection - 1;
@@ -428,7 +441,6 @@ void VideoGameLibrary::removeVideoGameFromArray(){
     return;
 };
 
-//function definition that is meant to allow the user to manually add a new game to the current library
 /*
     Function Name: addVideoGamesToArray
     Purpose: ask the user all the new information for the new game and then takes in into the different dynamically allocated arrays 

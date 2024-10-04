@@ -28,8 +28,8 @@ int main(){
         //Main Menu Logic
         cout << "\nWELCOME TO THE VIDEOGAME LIBRARY!" << endl << endl;
         cout << "Please pick an option 1 to 10" << endl;
-        cout << "1. Adds Game To Virtual Library" << endl;
-        cout << "2. Removing Games From Virtual Library" << endl;
+        cout << "1. Add a Game To Virtual Library" << endl;
+        cout << "2. Remove a Game From Virtual Library" << endl;
         cout << "3. Change Video Game Details" << endl;
         cout << "4. Display Video Game Titles" << endl;
         cout << "5. Display All Video Game Details" << endl;
