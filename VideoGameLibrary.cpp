@@ -6,10 +6,11 @@
     Purpose: driver file for the videogamelibrary object.
 */
 
-// Constructor
+
 /*
     Function Name: VideoGameLibrary (constructor)
-    Purpose:
+    Purpose: Assigns the maxGame variable (set by the user when the program starts)
+             and dynamically allocates a new VideoGame array
 */
 VideoGameLibrary::VideoGameLibrary (int maxGame) {
 
@@ -22,7 +23,7 @@ VideoGameLibrary::VideoGameLibrary (int maxGame) {
 // Destructor
 /*
     Function Name: VideoGameLibrary (destructor)
-    Purpose:
+    Purpose: deletes each index in the videoGamesArray
 */
 VideoGameLibrary::~VideoGameLibrary() {
      for (int i = 0; i < numGame; i++) {
@@ -34,7 +35,8 @@ VideoGameLibrary::~VideoGameLibrary() {
 };
 /*
     Function Name: changeVideoGameDetails
-    Purpose:
+    Purpose: Display game titles with display titles and use menu logic to select game.
+        Then use a nested menu to change game attributes
 */
 void VideoGameLibrary::changeVideoGameDetails(){
     //variable declaration
@@ -42,7 +44,7 @@ void VideoGameLibrary::changeVideoGameDetails(){
     Text* tempTitle;
     int newSel;
     int num;
-    //check if there is one game or 0
+    //check if the library is empty
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
     }
@@ -57,13 +59,15 @@ void VideoGameLibrary::changeVideoGameDetails(){
             cout << "\nOops! You need to enter a valid selection: ";
             cin >> selection;
         }
-        newSel = selection - 1;
-
         
+        newSel = selection - 1;//newSel corrects the index of the choice to the games index in the array
+
+        //Variable Declarations for nested menu
         int choice;
         Text* tempWord;
         char temp[100];
         int tempNum;
+        //Menu Logic to choice what trait to change
         do{
             cout << endl << "1. Title: " << videoGamesArray[newSel]->getVideoGameName()->getText() << endl;
             cout << "2. Author: " << videoGamesArray[newSel]->getVideoGameAuthor()->getText() << endl;
@@ -74,18 +78,21 @@ void VideoGameLibrary::changeVideoGameDetails(){
             cout << "What would you like to change the Name, Author, Publisher, Year, or Rating, Exit (Using Nums 1-6)" << endl;
 
             cin >> choice;
+            //Ensures the user enters a valid trait index
             while(choice < 1 || choice > 6){
                 cout << "\nINVALID ENTRY. Please choose again: " << endl;
                 cin >> choice;
             };
+            
+            //Nested Game menu logic that loops until the user exits
             switch(choice){  
                     
             case 1:
                 cout << "\nEnter new Game Name: ";
                 cin.ignore(); // clears cin to avoid issues with cin.getline
                 cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
-                tempWord = new Text(temp);
-                videoGamesArray[newSel]->setVideoGameName(tempWord);
+                tempWord = new Text(temp); //dynamically create a temp word object
+                videoGamesArray[newSel]->setVideoGameName(tempWord); //
                 break;
             case 2:
                 cout << "\nEnter new Author Name: ";
@@ -118,9 +125,6 @@ void VideoGameLibrary::changeVideoGameDetails(){
                 break;
         }
 
-
-
-
         }while(choice!=6);
 
     }
@@ -128,7 +132,8 @@ void VideoGameLibrary::changeVideoGameDetails(){
 };
 /*
     Function Name: sortVideoGamesByRating
-    Purpose:
+    Purpose: sorts each index within the videoGamesArray by its IGN rating
+             checks if Library has games. If so, call quicksort for rating
 */
 void VideoGameLibrary::sortVideoGamesByRating(){
     if(numGame < 1){
@@ -142,7 +147,8 @@ void VideoGameLibrary::sortVideoGamesByRating(){
 };
 /*
     Function Name: quickSortRating
-    Purpose:
+    Purpose: sorts each index within the videoGamesArray by its IGN rating
+        Recursive Quicksort function definition
 */
 void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, int high) {
   if (low < high) {
@@ -153,8 +159,9 @@ void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, i
 };
 /*
     Function Name: partitionRating
-    Purpose:
-*/
+    Purpose:  Quick sort partition fucntion definition
+        
+    */
 int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left, int right) {
   VideoGame* partition = sortVideoGamesArray[left]; 
   int temp = left; 
@@ -179,8 +186,9 @@ int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left,
 };
 /*
     Function Name: sortVideoGamesByYear
-    Purpose:
+    Purpose: sorts each index within the videoGamesArray by the year it was released
 */
+
 void VideoGameLibrary::sortVideoGamesByYear(){
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
@@ -192,7 +200,7 @@ void VideoGameLibrary::sortVideoGamesByYear(){
 };
 /*
     Function Name: quickSortYear
-    Purpose:
+    Purpose: sorts each index within the videoGamesArray by the year it was released
 */
 void VideoGameLibrary::quickSortYear(VideoGame** inVideoGamesArray, int low, int high) {
   if (low < high) {
@@ -201,9 +209,10 @@ void VideoGameLibrary::quickSortYear(VideoGame** inVideoGamesArray, int low, int
     quickSortYear(videoGamesArray, temp+1, high);
   }
 };
+
 /*
     Function Name: partitionYear
-    Purpose:
+    Purpose: Quick sort partition function for year
 */
 int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, int right) {
   VideoGame* partition = sortVideoGamesArray[left]; 
@@ -227,9 +236,10 @@ int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, i
   sortVideoGamesArray[temp] = tempArray;
   return temp;
 };
+
 /*
     Function Name: displayVideoGames
-    Purpose:
+    Purpose: displays each index of the array (name,author,publisher,year,rating)
 */
 void VideoGameLibrary::displayVideoGames(){
     Text* tmp;
@@ -249,9 +259,10 @@ void VideoGameLibrary::displayVideoGames(){
         }
     } 
 };
+
 /*
-    Function Name:
-    Purpose:
+    Function Name: displayVideoGameTitles
+    Purpose: displays the title of each game in the videoGamesArray
 */
 void VideoGameLibrary::displayVideoGameTitles(){
     if(numGame == 0){ 
@@ -266,11 +277,13 @@ void VideoGameLibrary::displayVideoGameTitles(){
         }
     }
 };
+
 /*
-    Function Name:
-    Purpose:
-*/
-void VideoGameLibrary::saveToFile(char* fileName){
+    Function Name: saveToFile
+    Purpose: go
+s through each index of the array and saves it to a file based on
+             */
+ void VideoGameLibrary::saveToFile(char* fileName){
     ofstream outfile; //outputs to the file
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
@@ -289,7 +302,7 @@ void VideoGameLibrary::saveToFile(char* fileName){
 };
 //function definition meant to pull the data from the provided files
 /*
-    Function Name:
+    Function Name: loadVideoGamesFromFile
     Purpose:
 */
 void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
@@ -349,7 +362,7 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
 
 //function definition of resizeVideoGameArray(). Is designed to double the size of the videoGameArray if there is an attempt to add a game to a full library
 /*
-    Function Name:
+    Function Name: resizeVideoGameArray
     Purpose:
 */
 void VideoGameLibrary::resizeVideoGameArray(){
@@ -371,7 +384,7 @@ void VideoGameLibrary::resizeVideoGameArray(){
 
 //function definition to remove a particular game from the videoGamesArray
 /*
-    Function Name:
+    Function Name: removeVideoGameFromArray
     Purpose:
 */
 void VideoGameLibrary::removeVideoGameFromArray(){
@@ -417,7 +430,7 @@ void VideoGameLibrary::removeVideoGameFromArray(){
 
 //function definition that is meant to allow the user to manually add a new game to the current library
 /*
-    Function Name:
+    Function Name: addVideoGamesToArray
     Purpose:
 */
 void VideoGameLibrary::addVideoGamesToArray(){
