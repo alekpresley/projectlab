@@ -40,9 +40,8 @@ VideoGameLibrary::~VideoGameLibrary() {
 void VideoGameLibrary::changeVideoGameDetails(){
     //variable declaration
     int selection;
-    Text* tempTitle;
     int newSel;
-    int num;
+    
     //check if the library is empty
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
