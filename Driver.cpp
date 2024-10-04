@@ -39,7 +39,6 @@ int main(){
         cout << "\nINVALID ENTRY. Please choose again: ";
         cin >> choice;
         };
-        //cout << endl << endl;
         switch (choice) {
             case 1:
                 cout << "\nYou pick 1. " << endl;

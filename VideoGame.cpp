@@ -7,6 +7,10 @@
 #include "VideoGame.h"
 
 //Constructor
+/*
+    Function Name: VideoGame (constructor)
+    Purpose: The purpose of a constructor is to construct an object and assign values to the object's members.
+*/
 VideoGame::VideoGame(Text* inName, Text* inAuthor, Text* inPublisher,int inYear,int inRating){
     name = inName;
     author = inAuthor;
@@ -17,6 +21,11 @@ VideoGame::VideoGame(Text* inName, Text* inAuthor, Text* inPublisher,int inYear,
     
 };
 //Destructor
+// Destructor
+/*
+    Function Name: VideoGame (destructor)
+    Purpose: Calls to delete the memory for the name,author,publisher and prints that it was deleted
+*/
 VideoGame::~VideoGame(){
     delete name;
     delete author;

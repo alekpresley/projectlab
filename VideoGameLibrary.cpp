@@ -7,6 +7,10 @@
 */
 
 // Constructor
+/*
+    Function Name: VideoGameLibrary (constructor)
+    Purpose:
+*/
 VideoGameLibrary::VideoGameLibrary (int maxGame) {
 
     this->maxGame = maxGame;
@@ -16,6 +20,10 @@ VideoGameLibrary::VideoGameLibrary (int maxGame) {
 };
 
 // Destructor
+/*
+    Function Name: VideoGameLibrary (destructor)
+    Purpose:
+*/
 VideoGameLibrary::~VideoGameLibrary() {
      for (int i = 0; i < numGame; i++) {
         delete videoGamesArray[i];
@@ -24,6 +32,10 @@ VideoGameLibrary::~VideoGameLibrary() {
     cout << "VideoGameLibrary was deleted";
     
 };
+/*
+    Function Name: changeVideoGameDetails
+    Purpose:
+*/
 void VideoGameLibrary::changeVideoGameDetails(){
     //variable declaration
     int selection;
@@ -92,15 +104,13 @@ void VideoGameLibrary::changeVideoGameDetails(){
             case 4:
                 cout << "\nEnter new Release Year: ";
                 cin.ignore(); // clears cin to avoid issues with cin.getline
-                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
-                tempWord = new Text(temp);
+                cin >> tempNum;
                 videoGamesArray[newSel]->setVideoGameYear(tempNum);
                 break;
             case 5:
                 cout << "\nEnter new IGN rating: (whole number 0-10)";
                 cin.ignore(); // clears cin to avoid issues with cin.getline
-                cin.getline(temp, 100); // aquires the users input and sets the temp character array to this input
-                tempWord = new Text(temp);
+                cin >> tempNum; // aquires the users input and sets the temp character array to this input
                 videoGamesArray[newSel]->setVideoGameRating(tempNum);
                 break;
             case 6:
@@ -116,7 +126,10 @@ void VideoGameLibrary::changeVideoGameDetails(){
     }
     return;
 };
-
+/*
+    Function Name: sortVideoGamesByRating
+    Purpose:
+*/
 void VideoGameLibrary::sortVideoGamesByRating(){
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
@@ -127,6 +140,10 @@ void VideoGameLibrary::sortVideoGamesByRating(){
     cout << "Finished sort.\n";
 
 };
+/*
+    Function Name: quickSortRating
+    Purpose:
+*/
 void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, int high) {
   if (low < high) {
     int temp = partitionRating(videoGamesArray, low, high);
@@ -134,6 +151,10 @@ void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, i
     quickSortRating(videoGamesArray, temp+1, high);
   }
 };
+/*
+    Function Name: partitionRating
+    Purpose:
+*/
 int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left, int right) {
   VideoGame* partition = sortVideoGamesArray[left]; 
   int temp = left; 
@@ -156,6 +177,10 @@ int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left,
   sortVideoGamesArray[temp] = tempArray;
   return temp;
 };
+/*
+    Function Name: sortVideoGamesByYear
+    Purpose:
+*/
 void VideoGameLibrary::sortVideoGamesByYear(){
     if(numGame < 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
@@ -165,6 +190,10 @@ void VideoGameLibrary::sortVideoGamesByYear(){
    	quickSortYear(videoGamesArray, 0, numGame-1);
     cout << "Finished sort.\n";
 };
+/*
+    Function Name: quickSortYear
+    Purpose:
+*/
 void VideoGameLibrary::quickSortYear(VideoGame** inVideoGamesArray, int low, int high) {
   if (low < high) {
     int temp = partitionYear(videoGamesArray, low, high);
@@ -172,6 +201,10 @@ void VideoGameLibrary::quickSortYear(VideoGame** inVideoGamesArray, int low, int
     quickSortYear(videoGamesArray, temp+1, high);
   }
 };
+/*
+    Function Name: partitionYear
+    Purpose:
+*/
 int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, int right) {
   VideoGame* partition = sortVideoGamesArray[left]; 
   int temp = left; 
@@ -194,7 +227,10 @@ int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, i
   sortVideoGamesArray[temp] = tempArray;
   return temp;
 };
-
+/*
+    Function Name: displayVideoGames
+    Purpose:
+*/
 void VideoGameLibrary::displayVideoGames(){
     Text* tmp;
     if(numGame == 0){ 
@@ -213,6 +249,10 @@ void VideoGameLibrary::displayVideoGames(){
         }
     } 
 };
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::displayVideoGameTitles(){
     if(numGame == 0){ 
             cout << "\nThere are no games in your Library!\n ";
@@ -226,8 +266,15 @@ void VideoGameLibrary::displayVideoGameTitles(){
         }
     }
 };
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::saveToFile(char* fileName){
     ofstream outfile; //outputs to the file
+    if(numGame < 1){
+        cout << "\nThere must always be at least one game in the library to use this function.\n";
+    }
     outfile.open(fileName);
 	for(int i = 0; i < numGame; i++){ //loop goes through all games
         outfile << videoGamesArray[i]->getVideoGameName()->getText() << endl; 
@@ -241,6 +288,10 @@ void VideoGameLibrary::saveToFile(char* fileName){
 	return;
 };
 //function definition meant to pull the data from the provided files
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
 
     //variable delcarations
@@ -297,6 +348,10 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
 };
 
 //function definition of resizeVideoGameArray(). Is designed to double the size of the videoGameArray if there is an attempt to add a game to a full library
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::resizeVideoGameArray(){
     cout << "\nResizing array from " << maxGame << " to " << maxGame *2;
     //creates a new array of size being double the original array
@@ -315,6 +370,10 @@ void VideoGameLibrary::resizeVideoGameArray(){
 };
 
 //function definition to remove a particular game from the videoGamesArray
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::removeVideoGameFromArray(){
     //variable declarations
     int selection;
@@ -357,6 +416,10 @@ void VideoGameLibrary::removeVideoGameFromArray(){
 };
 
 //function definition that is meant to allow the user to manually add a new game to the current library
+/*
+    Function Name:
+    Purpose:
+*/
 void VideoGameLibrary::addVideoGamesToArray(){
 
     //creates variables needed to temporarily hold the information needed to call the VideoGame constructor

@@ -1,9 +1,9 @@
-#Makefile for program 1 - video game library
+#Makefile for video game library
  
-all                 :   VideoGame
+all                 :   Driver
  
-Program1            :   Driver.o VideoGame.o VideoGameLibrary.o Text.o
-                        g++ -std=c++11 -o VideoGame.exe Driver.o VideoGame.o VideoGameLibrary.o Text.o
+Driver            :   Driver.o VideoGame.o VideoGameLibrary.o Text.o
+                        g++ -std=c++11 -o Driver.exe Driver.o VideoGame.o VideoGameLibrary.o Text.o
  
 Driver.o          :   Driver.cpp
                         g++ -std=c++11 -I ./ -c Driver.cpp
