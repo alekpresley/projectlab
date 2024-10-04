@@ -20,7 +20,6 @@ VideoGameLibrary::VideoGameLibrary (int maxGame) {
     return;
 };
 
-// Destructor
 /*
     Function Name: VideoGameLibrary (destructor)
     Purpose: deletes each index in the videoGamesArray
@@ -126,7 +125,6 @@ void VideoGameLibrary::changeVideoGameDetails(){
         }
 
         }while(choice!=6);
-
     }
     return;
 };
@@ -161,7 +159,7 @@ void VideoGameLibrary::quickSortRating(VideoGame** inVideoGamesArray, int low, i
     Function Name: partitionRating
     Purpose:  Quick sort partition fucntion definition
         
-    */
+*/
 int VideoGameLibrary::partitionRating(VideoGame** sortVideoGamesArray, int left, int right) {
   VideoGame* partition = sortVideoGamesArray[left]; 
   int temp = left; 
@@ -243,10 +241,12 @@ int VideoGameLibrary::partitionYear(VideoGame** sortVideoGamesArray, int left, i
 */
 void VideoGameLibrary::displayVideoGames(){
     Text* tmp;
+    //ensures there are games to display
     if(numGame == 0){ 
             cout << "\nThere are no games in your Library!\n ";
     }
     else{
+        //display video game details by calling them in the index with the text object display function
         for(int i =0; i < numGame; i++){
             videoGamesArray[i]->getVideoGameName()->displayText();
             cout << endl;
@@ -280,9 +280,9 @@ void VideoGameLibrary::displayVideoGameTitles(){
 
 /*
     Function Name: saveToFile
-    Purpose: go
-s through each index of the array and saves it to a file based on
-             */
+    Purpose: goes through each index of the array and saves it to a file based on
+             the user's choice
+*/
  void VideoGameLibrary::saveToFile(char* fileName){
     ofstream outfile; //outputs to the file
     if(numGame < 1){
@@ -303,7 +303,8 @@ s through each index of the array and saves it to a file based on
 //function definition meant to pull the data from the provided files
 /*
     Function Name: loadVideoGamesFromFile
-    Purpose:
+    Purpose: goes through the file of the user's choice and reads in the info
+             and puts the info into an array (name,author,publisher,year,rating)
 */
 void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
 
@@ -325,8 +326,8 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
     }
 
     /* 
-    attempts a getline from the file, trying to assign it to the temp c-string.
-    Failure of the getline skips the while loop, terminating the function with no other output and returns the user to the menu 
+        attempts a getline from the file, trying to assign it to the temp c-string.
+        Failure of the getline skips the while loop, terminating the function with no other output and returns the user to the menu 
     */
     while(infile.getline(temp,10000))
     {
@@ -363,7 +364,7 @@ void VideoGameLibrary::loadVideoGamesFromFile(char* filename){
 //function definition of resizeVideoGameArray(). Is designed to double the size of the videoGameArray if there is an attempt to add a game to a full library
 /*
     Function Name: resizeVideoGameArray
-    Purpose:
+    Purpose: creates an array of size being double the original, then copys the old array inro the new array that was double finally destory the array that did not get copyed.
 */
 void VideoGameLibrary::resizeVideoGameArray(){
     cout << "\nResizing array from " << maxGame << " to " << maxGame *2;
@@ -385,7 +386,7 @@ void VideoGameLibrary::resizeVideoGameArray(){
 //function definition to remove a particular game from the videoGamesArray
 /*
     Function Name: removeVideoGameFromArray
-    Purpose:
+    Purpose: displays all the video game titles and ask which one to remove then deletes the game then shifts the array then decrementing the numgames
 */
 void VideoGameLibrary::removeVideoGameFromArray(){
     //variable declarations
@@ -394,7 +395,7 @@ void VideoGameLibrary::removeVideoGameFromArray(){
     int newSel;
     int num;
     //check if there is one game or 0. Will not let the user delete a game if this is true. Will let the user delete a game if it is false
-    if(numGame < 1){
+    if(numGame <= 1){
         cout << "\nThere must always be at least one game in the library to use this function.\n";
     }
     else{
@@ -431,7 +432,8 @@ void VideoGameLibrary::removeVideoGameFromArray(){
 //function definition that is meant to allow the user to manually add a new game to the current library
 /*
     Function Name: addVideoGamesToArray
-    Purpose:
+    Purpose: ask the user all the new information for the new game and then takes in into the different dynamically allocated arrays 
+        Then checks if the library is full, resizing if needed. Then adds the game to the next open spot in the array.
 */
 void VideoGameLibrary::addVideoGamesToArray(){
 

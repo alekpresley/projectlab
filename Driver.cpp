@@ -25,7 +25,7 @@ int main(){
     cout << "                                 " << endl;
 
     do{
-        //Menu
+        //Main Menu Logic
         cout << "\nWELCOME TO THE VIDEOGAME LIBRARY!" << endl << endl;
         cout << "Please pick an option 1 to 10" << endl;
         cout << "1. Adds Game To Virtual Library" << endl;
@@ -94,7 +94,7 @@ int main(){
         }
     }while(choice!=10);
 
-    delete library; //deletes the library memory
+    delete library; //Calls the library destructor which calls all nested destructors, freeing all memory
     
     return 0;
 }
